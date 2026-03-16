@@ -3,19 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Tutoring Video</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+margin:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+video{
+width:100%;
+max-width:1000px;
+}
+</style>
+
 </head>
 
 <body>
 
-<h1>Study Video</h1>
-
-<iframe
-    src="https://drive.google.com/file/d/1ER8sWdLr_Ov6IOp2mo-bdptBcEVc4HLm/preview"
-    width="960"
-    height="540"
-    allow="autoplay"
-    allowfullscreen>
-</iframe>
+<video controls>
+<source src="https://drive.google.com/uc?export=download&id=1ER8sWdLr_Ov6IOp2mo-bdptBcEVc4HLm" type="video/mp4">
+</video>
 
 </body>
 </html>
