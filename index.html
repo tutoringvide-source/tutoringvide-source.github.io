@@ -2,36 +2,129 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Study Videos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<title>Study Videos</title>
+
 <style>
+
 body{
-font-family: Arial;
+font-family:Arial;
+background:#f5f5f5;
 text-align:center;
-padding:40px;
+padding:20px;
+margin:0;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.menu{
+background:white;
+margin:10px auto;
+padding:15px;
+max-width:400px;
+border-radius:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.15);
+cursor:pointer;
+}
+
+.menu:hover{
+background:#eeeeee;
 }
 
 a{
-display:block;
-margin:20px;
-padding:20px;
-background:#4CAF50;
-color:white;
 text-decoration:none;
-font-size:20px;
-border-radius:10px;
+color:black;
+font-size:18px;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<h1>Study Video</h1>
+<h1 id="title">과목 선택</h1>
 
-<a href="https://drive.google.com/file/d/1ER8sWdLr_Ov6IOp2mo-bdptBcEVc4HLm/view" target="_blank">
-영상 보기
-</a>
+<div id="content"></div>
+
+<script src="videos.js"></script>
+
+<script>
+
+let state="subject"
+let currentSubject
+let currentBook
+
+function renderSubjects(){
+
+title.innerText="과목 선택"
+content.innerHTML=""
+
+for(let subject in data){
+
+let div=document.createElement("div")
+div.className="menu"
+div.innerText=subject
+
+div.onclick=()=>{
+currentSubject=subject
+renderBooks()
+}
+
+content.appendChild(div)
+}
+
+}
+
+function renderBooks(){
+
+title.innerText=currentSubject
+content.innerHTML=""
+
+let books=data[currentSubject]
+
+for(let book in books){
+
+let div=document.createElement("div")
+div.className="menu"
+div.innerText=book
+
+div.onclick=()=>{
+currentBook=book
+renderVideos()
+}
+
+content.appendChild(div)
+}
+
+}
+
+function renderVideos(){
+
+title.innerText=currentSubject+" - "+currentBook
+content.innerHTML=""
+
+let videos=data[currentSubject][currentBook]
+
+videos.forEach(v=>{
+
+let div=document.createElement("div")
+div.className="menu"
+
+div.innerHTML=`<a href="${v.url}" target="_blank">${v.title}</a>`
+
+content.appendChild(div)
+
+})
+
+}
+
+renderSubjects()
+
+</script>
 
 </body>
 </html>
